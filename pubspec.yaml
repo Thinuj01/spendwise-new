@@ -10,10 +10,32 @@ dependencies:
   flutter:
     sdk: flutter
 
+  cupertino_icons: ^1.0.8
+  google_nav_bar: ^5.0.6
+  provider:
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  intl: ^0.18.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.1.5
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - lib/images/
+
+  fonts:
+    - family: Jura
+      fonts:
+        - asset: assets/fonts/Jura-Regular.ttf
+        - asset: assets/fonts/Jura-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Jura-Light.ttf
+          weight: 300
+        
