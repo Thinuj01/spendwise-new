@@ -47,11 +47,13 @@ class _HomePageState extends State<HomePage> {
     ];
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xFF272973),
-        child: Icon(Icons.add, color: Colors.white),
-        onPressed: createNewTransaction,
-      ),
+      floatingActionButton: _selectedIndex == 0
+          ? FloatingActionButton(
+              backgroundColor: Color(0xFF272973),
+              child: Icon(Icons.add, color: Colors.white),
+              onPressed: createNewTransaction,
+            )
+          : null,
       backgroundColor: Colors.grey[100],
       bottomNavigationBar: BottomNavBar(
         onTabChange: (index) => navigateBottomBar(index),

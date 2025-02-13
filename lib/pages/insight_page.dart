@@ -60,14 +60,14 @@ class _InsightPageState extends State<InsightPage> {
                 width: 325,
                 decoration: BoxDecoration(
                     border: Border.all(width: 2, color: Color(0xFF272973)),
-                    color: Colors.white,
+                    color: Color(0xFF272973),
                     borderRadius: BorderRadius.circular(10)),
                 child: Column(
                   children: [
                     Text(
                       'Wallet Balance',
                       style: TextStyle(
-                        color: Color(0xFF272973),
+                        color: Colors.white,
                         fontFamily: 'Jura',
                         fontSize: 18,
                       ),
@@ -75,7 +75,7 @@ class _InsightPageState extends State<InsightPage> {
                     Text(
                       "Rs ${_mainBalance.toString()}0",
                       style: TextStyle(
-                          color: Color(0xFF272973),
+                          color: Colors.white,
                           fontFamily: 'Jura',
                           fontSize: 40,
                           fontWeight: FontWeight.bold),
