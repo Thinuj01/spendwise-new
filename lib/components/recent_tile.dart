@@ -26,7 +26,7 @@ class RecentTile extends StatelessWidget {
                   color: Color(0xFF272973), fontFamily: 'Jura', fontSize: 15),
             ),
             Text(
-              transaction.amount.toString(),
+              "Rs ${transaction.amount.toString()}0",
               style: TextStyle(
                   color: Color(0xFF272973),
                   fontFamily: 'Jura',

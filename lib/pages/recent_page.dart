@@ -32,21 +32,30 @@ class _RecentPageState extends State<RecentPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          // Allows the ListView to take available space and be scrollable
-          child: ListView.builder(
-            itemCount: transactions.length,
-            itemBuilder: (context, index) {
-              TransactionModel _transaction = transactions[index];
-              return RecentPageTile(
-                transaction: _transaction,
-              );
-            },
+    return Center(
+      child: Column(
+        children: [
+          Expanded(
+            // Allows the ListView to take available space and be scrollable
+            child: transactions.length > 0
+                ? ListView.builder(
+                    itemCount: transactions.length,
+                    itemBuilder: (context, index) {
+                      TransactionModel _transaction = transactions[index];
+                      return RecentPageTile(
+                        transaction: _transaction,
+                      );
+                    })
+                : Text(
+                    "No Transactions made yet.",
+                    style: TextStyle(
+                        fontFamily: 'Jura',
+                        color: Color(0xFF272973),
+                        fontSize: 15),
+                  ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

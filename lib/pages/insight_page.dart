@@ -48,75 +48,94 @@ class _InsightPageState extends State<InsightPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                margin: EdgeInsets.only(top: 40),
-                padding: EdgeInsets.all(20),
-                width: 325,
-                decoration: BoxDecoration(
-                    border: Border.all(width: 2, color: Color(0xFF272973)),
-                    color: Color(0xFF272973),
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  children: [
-                    Text(
-                      'Wallet Balance',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Jura',
-                        fontSize: 18,
-                      ),
+              Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 40),
+                    padding: EdgeInsets.all(20),
+                    width: 325,
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 2, color: Color(0xFF272973)),
+                        color: Color(0xFF272973),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Wallet Balance',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Jura',
+                            fontSize: 18,
+                          ),
+                        ),
+                        Text(
+                          "Rs ${_mainBalance.toString()}0",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Jura',
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold),
+                        )
+                      ],
                     ),
-                    Text(
-                      "Rs ${_mainBalance.toString()}0",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Jura',
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              Icon(
-                Icons.history,
-                color: Color(0xFF272973),
-                size: 40,
-              ),
-              Text(
-                "Recent Income & Expences",
-                style: TextStyle(
-                    fontFamily: 'Jura', color: Color(0xFF272973), fontSize: 15),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 30,
               ),
-              SizedBox(
-                height: 300,
-                child: ListView.builder(
-                    itemCount: 4,
-                    itemBuilder: (context, index) {
-                      TransactionModel _transaction = transactions[index];
-                      return RecentTile(
-                        transaction: _transaction,
-                      );
-                    }),
+              Column(
+                children: [
+                  Icon(
+                    Icons.history,
+                    color: Color(0xFF272973),
+                    size: 40,
+                  ),
+                  Text(
+                    "Recent Income & Expenses",
+                    style: TextStyle(
+                        fontFamily: 'Jura',
+                        color: Color(0xFF272973),
+                        fontSize: 15),
+                  ),
+                  SizedBox(height: 30),
+                  SizedBox(
+                    height: 300,
+                    child: transactions.isNotEmpty
+                        ? ListView.builder(
+                            shrinkWrap: true,
+                            physics:
+                                NeverScrollableScrollPhysics(), // Prevents conflicts
+                            itemCount: transactions.length >= 4
+                                ? 4
+                                : transactions.length,
+                            itemBuilder: (context, index) {
+                              TransactionModel _transaction =
+                                  transactions[index];
+                              return RecentTile(
+                                transaction: _transaction,
+                              );
+                            })
+                        : Text(
+                            "No Transactions made yet.",
+                            style: TextStyle(
+                                fontFamily: 'Jura',
+                                color: Color(0xFF272973),
+                                fontSize: 15),
+                          ),
+                  ),
+                  SizedBox(height: 75)
+                ],
               ),
-              SizedBox(
-                height: 75,
-              )
             ],
           ),
-        ],
+        ),
       ),
     );
   }
