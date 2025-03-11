@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final List<Widget> _pages = [
       InsightPage(key: _insightPageKey), // Assign key here
-      const StatisticPage(),
+      StatisticPage(),
       RecentPage()
     ];
 
