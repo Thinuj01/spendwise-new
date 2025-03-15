@@ -203,8 +203,12 @@ class _TransactionBoxState extends State<TransactionBox> {
                                 value: "Salary",
                               ),
                               DropdownMenuItem(
-                                child: Text("Fix income"),
-                                value: "Fix income",
+                                child: Text("Passive Income"),
+                                value: "Passive income",
+                              ),
+                              DropdownMenuItem(
+                                child: Text("Gifts or Bonuses"),
+                                value: "Gifts or Bonuses",
                               ),
                               DropdownMenuItem(
                                 child: Text("Other Incomes"),
@@ -219,6 +223,34 @@ class _TransactionBoxState extends State<TransactionBox> {
                               DropdownMenuItem(
                                 child: Text("Food"),
                                 value: "Food",
+                              ),
+                              DropdownMenuItem(
+                                child: Text("Groceries"),
+                                value: "Groceries",
+                              ),
+                              DropdownMenuItem(
+                                child: Text("Housing"),
+                                value: "Housing",
+                              ),
+                              DropdownMenuItem(
+                                child: Text("Entertainment"),
+                                value: "Entertainment",
+                              ),
+                              DropdownMenuItem(
+                                child: Text("Health"),
+                                value: "Health",
+                              ),
+                              DropdownMenuItem(
+                                child: Text("Education"),
+                                value: "Education",
+                              ),
+                              DropdownMenuItem(
+                                child: Text("Debt Payments"),
+                                value: "Debt Payments",
+                              ),
+                              DropdownMenuItem(
+                                child: Text("Personal Care"),
+                                value: "Personal Care",
                               ),
                               DropdownMenuItem(
                                 child: Text("Other Expences"),

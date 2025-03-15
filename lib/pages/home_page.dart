@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
             );
           },
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.grey[100],
       ),
       drawer: Drawer(
         backgroundColor: Color(0xFF272973),

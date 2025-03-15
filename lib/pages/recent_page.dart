@@ -34,6 +34,19 @@ class _RecentPageState extends State<RecentPage> {
     }
   }
 
+  // Extract unique categories from transactions
+  List<String> getCategories() {
+    Set<String> categories = {"All"}; // Always include "All" as an option
+    for (var transaction in transactions) {
+      if (selectedType == "All" ||
+          (selectedType == "Income" && transaction.inIncome) ||
+          (selectedType == "Expense" && !transaction.inIncome)) {
+        categories.add(transaction.category);
+      }
+    }
+    return categories.toList();
+  }
+
   void applyFilters() {
     setState(() {
       filteredTransactions = transactions.where((transaction) {
@@ -51,6 +64,21 @@ class _RecentPageState extends State<RecentPage> {
     });
   }
 
+  void deleteTransaction(BuildContext context, TransactionModel transaction) {
+    setState(() {
+      _myBox.delete(transaction.key); // Remove from Hive
+      transactions.remove(transaction); // Remove from list
+      applyFilters(); // Reapply filters after deletion
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text("Transaction deleted"),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -61,33 +89,6 @@ class _RecentPageState extends State<RecentPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Category Filter
-              SizedBox(
-                width: 300,
-                child: DropdownButton<String>(
-                  value: selectedCategory,
-                  isExpanded: true,
-                  alignment: Alignment.centerRight,
-                  items:
-                      ["All", "Food", "Transport", "Shopping", "Bills", "Other"]
-                          .map((category) => DropdownMenuItem(
-                                value: category,
-                                child: Text(category),
-                              ))
-                          .toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      selectedCategory = value!;
-                      applyFilters();
-                    });
-                  },
-                  style: TextStyle(
-                      fontFamily: 'Jura',
-                      color: Color(0xFF272973),
-                      fontSize: 15),
-                ),
-              ),
-
               // Type Filter
               SizedBox(
                 width: 300,
@@ -104,6 +105,34 @@ class _RecentPageState extends State<RecentPage> {
                   onChanged: (value) {
                     setState(() {
                       selectedType = value!;
+                      selectedCategory =
+                          "All"; // Reset category when type changes
+                      applyFilters();
+                    });
+                  },
+                  style: TextStyle(
+                      fontFamily: 'Jura',
+                      color: Color(0xFF272973),
+                      fontSize: 15),
+                ),
+              ),
+
+              // Category Filter
+              SizedBox(
+                width: 300,
+                child: DropdownButton<String>(
+                  value: selectedCategory,
+                  isExpanded: true,
+                  alignment: Alignment.centerRight,
+                  items: getCategories()
+                      .map((category) => DropdownMenuItem(
+                            value: category,
+                            child: Text(category),
+                          ))
+                      .toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      selectedCategory = value!;
                       applyFilters();
                     });
                   },
@@ -170,6 +199,8 @@ class _RecentPageState extends State<RecentPage> {
                     TransactionModel _transaction = filteredTransactions[index];
                     return RecentPageTile(
                       transaction: _transaction,
+                      deleteFunction: (context) =>
+                          deleteTransaction(context, _transaction),
                     );
                   },
                 )
