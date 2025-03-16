@@ -196,11 +196,11 @@ class _RecentPageState extends State<RecentPage> {
               ? ListView.builder(
                   itemCount: filteredTransactions.length,
                   itemBuilder: (context, index) {
-                    TransactionModel _transaction = filteredTransactions[index];
+                    TransactionModel transaction = filteredTransactions[index];
                     return RecentPageTile(
-                      transaction: _transaction,
+                      transaction: transaction,
                       deleteFunction: (context) =>
-                          deleteTransaction(context, _transaction),
+                          deleteTransaction(context, transaction),
                     );
                   },
                 )

@@ -4,7 +4,7 @@ import 'package:spendwise/components/recent_tile.dart';
 import 'package:spendwise/models/transaction_model.dart';
 
 class InsightPage extends StatefulWidget {
-  InsightPage({super.key});
+  const InsightPage({super.key});
 
   @override
   State<InsightPage> createState() => _InsightPageState();
@@ -116,10 +116,10 @@ class _InsightPageState extends State<InsightPage> {
                                 ? 4
                                 : transactions.length,
                             itemBuilder: (context, index) {
-                              TransactionModel _transaction =
+                              TransactionModel transaction =
                                   transactions[index];
                               return RecentTile(
-                                transaction: _transaction,
+                                transaction: transaction,
                               );
                             })
                         : Text(

@@ -1,7 +1,10 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:spendwise/components/bottom_nav_bar.dart';
 import 'package:spendwise/components/transaction_box.dart';
+import 'package:spendwise/pages/about_page.dart';
 import 'package:spendwise/pages/insight_page.dart';
 import 'package:spendwise/pages/recent_page.dart';
 import 'package:spendwise/pages/statistic_page.dart';
@@ -40,22 +43,23 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _pages = [
+    final List<Widget> pages = [
       InsightPage(key: _insightPageKey), // Assign key here
       StatisticPage(),
-      RecentPage()
+      RecentPage(),
     ];
 
     return Scaffold(
       floatingActionButton: _selectedIndex == 0
           ? FloatingActionButton(
               backgroundColor: Color(0xFF272973),
-              child: Icon(Icons.add, color: Colors.white),
               onPressed: createNewTransaction,
+              child: Icon(Icons.add, color: Colors.white),
             )
           : null,
       backgroundColor: Colors.grey[100],
       bottomNavigationBar: BottomNavBar(
+        currentIndex: _selectedIndex, // Pass the current index
         onTabChange: (index) => navigateBottomBar(index),
       ),
       appBar: AppBar(
@@ -89,6 +93,42 @@ class _HomePageState extends State<HomePage> {
                     title: Text("Home",
                         style:
                             TextStyle(color: Colors.white, fontFamily: 'Jura')),
+                    onTap: () {
+                      setState(() {
+                        _selectedIndex = 0; // Update selected index
+                      });
+                      Navigator.pop(context); // Close the drawer
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: ListTile(
+                    leading: Icon(Icons.bar_chart, color: Colors.white),
+                    title: Text("Statistics",
+                        style:
+                            TextStyle(color: Colors.white, fontFamily: 'Jura')),
+                    onTap: () {
+                      setState(() {
+                        _selectedIndex = 1; // Update selected index
+                      });
+                      Navigator.pop(context); // Close the drawer
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: ListTile(
+                    leading: Icon(Icons.history, color: Colors.white),
+                    title: Text("Recents",
+                        style:
+                            TextStyle(color: Colors.white, fontFamily: 'Jura')),
+                    onTap: () {
+                      setState(() {
+                        _selectedIndex = 2; // Update selected index
+                      });
+                      Navigator.pop(context); // Close the drawer
+                    },
                   ),
                 ),
                 Padding(
@@ -98,6 +138,13 @@ class _HomePageState extends State<HomePage> {
                     title: Text("About",
                         style:
                             TextStyle(color: Colors.white, fontFamily: 'Jura')),
+                    onTap: () {
+                      Navigator.pop(context); // Close the drawer
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AboutPage()),
+                      );
+                    },
                   ),
                 ),
               ],
@@ -105,7 +152,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: _pages[_selectedIndex], // Updated list with a dynamic key
+      body: pages[_selectedIndex], // Updated list with a dynamic key
     );
   }
 }

@@ -4,9 +4,9 @@ import 'package:spendwise/models/transaction_model.dart';
 import 'package:intl/intl.dart';
 
 class RecentPageTile extends StatelessWidget {
-  TransactionModel transaction;
-  Function(BuildContext) deleteFunction;
-  RecentPageTile(
+  final TransactionModel transaction;
+  final Function(BuildContext) deleteFunction;
+  const RecentPageTile(
       {super.key, required this.transaction, required this.deleteFunction});
 
   void _confirmDelete(BuildContext context) {
@@ -70,6 +70,7 @@ class RecentPageTile extends StatelessWidget {
             onPressed: (context) => _confirmDelete(context),
             backgroundColor: Colors.red.shade600,
             foregroundColor: Colors.white,
+            borderRadius: BorderRadius.circular(12),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -79,7 +80,6 @@ class RecentPageTile extends StatelessWidget {
                 ),
               ],
             ),
-            borderRadius: BorderRadius.circular(12),
           )
         ]),
         child: Container(

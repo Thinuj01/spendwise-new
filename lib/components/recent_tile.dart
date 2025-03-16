@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:spendwise/models/transaction_model.dart';
 
 class RecentTile extends StatelessWidget {
-  TransactionModel transaction;
-  RecentTile({super.key, required this.transaction});
+  final TransactionModel transaction;
+  const RecentTile({super.key, required this.transaction});
 
   @override
   Widget build(BuildContext context) {

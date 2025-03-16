@@ -6,7 +6,7 @@ import 'package:spendwise/models/transaction_model.dart';
 
 // ignore: must_be_immutable
 class StatisticPage extends StatefulWidget {
-  StatisticPage({super.key});
+  const StatisticPage({super.key});
 
   @override
   State<StatisticPage> createState() => _StatisticPageState();
@@ -389,32 +389,40 @@ class _StatisticPageState extends State<StatisticPage> {
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Jura')),
               SizedBox(height: 20),
-              PieChart(
-                dataMap: monthlyFilteredIncomeDataMap,
-                chartRadius: MediaQuery.of(context).size.width / 2.2,
-                chartValuesOptions: const ChartValuesOptions(
-                  showChartValueBackground: false,
-                  showChartValues: true,
-                  showChartValuesInPercentage: true,
-                  showChartValuesOutside: false,
-                  chartValueStyle: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Jura',
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold),
+              if (monthlyFilteredIncomeDataMap.isNotEmpty) ...[
+                PieChart(
+                  dataMap: monthlyFilteredIncomeDataMap,
+                  chartRadius: MediaQuery.of(context).size.width / 2.2,
+                  chartValuesOptions: const ChartValuesOptions(
+                    showChartValueBackground: false,
+                    showChartValues: true,
+                    showChartValuesInPercentage: true,
+                    showChartValuesOutside: false,
+                    chartValueStyle: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Jura',
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  colorList: colorList,
+                  legendOptions: const LegendOptions(
+                    showLegends: true,
+                    legendPosition: LegendPosition.right,
+                    showLegendsInRow: false,
+                    legendTextStyle: TextStyle(
+                        color: Color(0xFF272973),
+                        fontFamily: 'Jura',
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
-                colorList: colorList,
-                legendOptions: const LegendOptions(
-                  showLegends: true,
-                  legendPosition: LegendPosition.right,
-                  showLegendsInRow: false,
-                  legendTextStyle: TextStyle(
-                      color: Color(0xFF272973),
-                      fontFamily: 'Jura',
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
+              ] else ...[
+                Text("No Income Transactions",
+                    style: TextStyle(
+                        color: Color(0xFF272973),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold)),
+              ],
               SizedBox(height: 20),
               Text(
                   "Expenses on ${DateFormat('MMMM yyyy').format(selectedMonth)}",
@@ -424,32 +432,40 @@ class _StatisticPageState extends State<StatisticPage> {
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Jura')),
               SizedBox(height: 20),
-              PieChart(
-                dataMap: monthlyFilteredExpenseDataMap,
-                chartRadius: MediaQuery.of(context).size.width / 2.2,
-                chartValuesOptions: const ChartValuesOptions(
-                  showChartValueBackground: false,
-                  showChartValues: true,
-                  showChartValuesInPercentage: true,
-                  showChartValuesOutside: false,
-                  chartValueStyle: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Jura',
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold),
+              if (monthlyFilteredExpenseDataMap.isNotEmpty) ...[
+                PieChart(
+                  dataMap: monthlyFilteredExpenseDataMap,
+                  chartRadius: MediaQuery.of(context).size.width / 2.2,
+                  chartValuesOptions: const ChartValuesOptions(
+                    showChartValueBackground: false,
+                    showChartValues: true,
+                    showChartValuesInPercentage: true,
+                    showChartValuesOutside: false,
+                    chartValueStyle: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Jura',
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  colorList: colorList,
+                  legendOptions: const LegendOptions(
+                    showLegends: true,
+                    legendPosition: LegendPosition.right,
+                    showLegendsInRow: false,
+                    legendTextStyle: TextStyle(
+                        color: Color(0xFF272973),
+                        fontFamily: 'Jura',
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
-                colorList: colorList,
-                legendOptions: const LegendOptions(
-                  showLegends: true,
-                  legendPosition: LegendPosition.right,
-                  showLegendsInRow: false,
-                  legendTextStyle: TextStyle(
-                      color: Color(0xFF272973),
-                      fontFamily: 'Jura',
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
+              ] else ...[
+                Text("No Expense Transactions",
+                    style: TextStyle(
+                        color: Color(0xFF272973),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold)),
+              ],
             ] else ...[
               Text("No Transactions for Selected Month",
                   style: TextStyle(

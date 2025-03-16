@@ -199,62 +199,62 @@ class _TransactionBoxState extends State<TransactionBox> {
                       items: _isIncome
                           ? const [
                               DropdownMenuItem(
-                                child: Text("Salary"),
                                 value: "Salary",
+                                child: Text("Salary"),
                               ),
                               DropdownMenuItem(
-                                child: Text("Passive Income"),
                                 value: "Passive income",
+                                child: Text("Passive Income"),
                               ),
                               DropdownMenuItem(
-                                child: Text("Gifts or Bonuses"),
                                 value: "Gifts or Bonuses",
+                                child: Text("Gifts or Bonuses"),
                               ),
                               DropdownMenuItem(
-                                child: Text("Other Incomes"),
                                 value: "Other Incomes",
+                                child: Text("Other Incomes"),
                               ),
                             ]
                           : const [
                               DropdownMenuItem(
-                                child: Text("Transport"),
                                 value: "Transport",
+                                child: Text("Transport"),
                               ),
                               DropdownMenuItem(
-                                child: Text("Food"),
                                 value: "Food",
+                                child: Text("Food"),
                               ),
                               DropdownMenuItem(
-                                child: Text("Groceries"),
                                 value: "Groceries",
+                                child: Text("Groceries"),
                               ),
                               DropdownMenuItem(
-                                child: Text("Housing"),
                                 value: "Housing",
+                                child: Text("Housing"),
                               ),
                               DropdownMenuItem(
-                                child: Text("Entertainment"),
                                 value: "Entertainment",
+                                child: Text("Entertainment"),
                               ),
                               DropdownMenuItem(
-                                child: Text("Health"),
                                 value: "Health",
+                                child: Text("Health"),
                               ),
                               DropdownMenuItem(
-                                child: Text("Education"),
                                 value: "Education",
+                                child: Text("Education"),
                               ),
                               DropdownMenuItem(
-                                child: Text("Debt Payments"),
                                 value: "Debt Payments",
+                                child: Text("Debt Payments"),
                               ),
                               DropdownMenuItem(
-                                child: Text("Personal Care"),
                                 value: "Personal Care",
+                                child: Text("Personal Care"),
                               ),
                               DropdownMenuItem(
-                                child: Text("Other Expences"),
                                 value: "Other Expences",
+                                child: Text("Other Expences"),
                               ),
                             ],
                       value: _dropDownValue,
